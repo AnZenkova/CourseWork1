@@ -1,24 +1,25 @@
 package com.company;
 
-public class Employee<employeeDepartment> {
+public class Employee {
     String employeeName;
     String employeeLastName;
     String employeeMiddleName;
     int employeeDepartment;
-    double employeeSalary;
-    static int iD;
+    float employeeSalary;
+    int iD;
+    static int count = 1;
 
-    public Employee(String employeeLastName, String employeeName, String employeeMiddleName, int employeeDepartment, float employeeSalary) {
+    public Employee( String employeeLastName, String employeeName, String employeeMiddleName, int employeeDepartment, float employeeSalary) {
         this.employeeName = employeeName;
         this.employeeLastName = employeeLastName;
         this.employeeMiddleName = employeeMiddleName;
         this.employeeDepartment = employeeDepartment;
         departmentNumberCheck(employeeDepartment);
         this.employeeSalary = employeeSalary;
-        iD++;
+        this.iD = count++;
     }
 
-    public static int getID() {
+    public int getID() {
         return iD;
     }
 
