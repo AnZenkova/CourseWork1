@@ -179,7 +179,7 @@ public class Main {
         }
     }
 
-    private static void findEmployeesWithSalaryGreaterThanNumber(Employee[] employees, float number) { // сотрудников с зарплатой меньше числа
+    private static void findEmployeesWithSalaryGreaterThanNumber(Employee[] employees, float number) { // сотрудников с зарплатой больше или равно числу
         for (int i = 0; i < employees.length; i++) {
             if (employees[i].employeeSalary >= number) {
                 System.out.println(employees[i].getID() + ": " + employees[i].employeeLastName + " " + employees[i].employeeName + " " + employees[i].employeeMiddleName + " " + employees[i].employeeSalary);
