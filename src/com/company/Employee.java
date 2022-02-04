@@ -5,11 +5,11 @@ public class Employee {
     String employeeLastName;
     String employeeMiddleName;
     int employeeDepartment;
-    float employeeSalary;
+    double employeeSalary;
     int iD;
     static int count = 1;
 
-    public Employee( String employeeLastName, String employeeName, String employeeMiddleName, int employeeDepartment, float employeeSalary) {
+    public Employee( String employeeLastName, String employeeName, String employeeMiddleName, int employeeDepartment, double employeeSalary) {
         this.employeeName = employeeName;
         this.employeeLastName = employeeLastName;
         this.employeeMiddleName = employeeMiddleName;
@@ -44,6 +44,10 @@ public class Employee {
 
     public int getEmployeeDepartment() {
         return employeeDepartment;
+    }
+
+    public double getEmployeeSalary() {
+        return employeeSalary;
     }
 
     public void setEmployeeDepartment() {
