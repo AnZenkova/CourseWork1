@@ -1,13 +1,13 @@
 package com.company;
 
 public class Employee {
-    String employeeName;
-    String employeeLastName;
-    String employeeMiddleName;
+    private String employeeName;
+    private String employeeLastName;
+    private String employeeMiddleName;
     int employeeDepartment;
     double employeeSalary;
-    int iD;
-    static int count = 1;
+    private int iD;
+    private static int count = 1;
 
     public Employee( String employeeLastName, String employeeName, String employeeMiddleName, int employeeDepartment, double employeeSalary) {
         this.employeeName = employeeName;

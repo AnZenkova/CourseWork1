@@ -11,6 +11,7 @@ package com.company;
         public void addEmployee(String employeeLastName, String employeeName, String employeeMiddleName, int employeeDepartment, double employeeSalary) {
             if (size >= employees.length) {
                 System.out.println("Книга учёта сотрудников переполнена. Добавление нового сотрудника ограниченно.");
+                return;
             }
             Employee newEmployee = new Employee(employeeLastName, employeeName, employeeMiddleName, employeeDepartment, employeeSalary);
             employees[size++] = newEmployee;
@@ -26,7 +27,7 @@ package com.company;
         public double calculateCostOfSalary() { // сумма затрат на зарплаты
             double sum = 0f;
             for (int i = 0; i < size; i++) {
-                sum = sum + employees[i].employeeSalary;
+                sum = sum + employees[i].getEmployeeSalary();
             }
             return sum;
         }
@@ -35,8 +36,8 @@ package com.company;
             double minSalary = 1.0 / 0.0;
             int index = 0;
             for (int i = 0; i < size; i++) {
-                if (minSalary > employees[i].employeeSalary) {
-                    minSalary = employees[i].employeeSalary;
+                if (minSalary > employees[i].getEmployeeSalary()) {
+                    minSalary = employees[i].getEmployeeSalary();
                     index = i;
                 }
             }
@@ -47,8 +48,8 @@ package com.company;
             double maxSalary = -1;
             int index = 0;
             for (int i = 0; i < size; i++) {
-                if (maxSalary < employees[i].employeeSalary) {
-                    maxSalary = employees[i].employeeSalary;
+                if (maxSalary < employees[i].getEmployeeSalary()) {
+                    maxSalary = employees[i].getEmployeeSalary();
                     index = i;
                 }
             }
@@ -62,13 +63,13 @@ package com.company;
 
         public void printAllEmployees() { // Ф. И. О. всех сотрудников
             for (int i = 0; i < size; i++) {
-                System.out.println(employees[i].employeeLastName + " " + employees[i].employeeName + " " + employees[i].employeeMiddleName);
+                System.out.println(employees[i].getEmployeeLastName() + " " + employees[i].getEmployeeName() + " " + employees[i].getEmployeeMiddleName());
             }
         }
 
         public void indexationSalaryAllEmployees(int percent) { // индексация всех зарплат на %
             for (int i = 0; i < size; i++) {
-                employees[i].employeeSalary = employees[i].employeeSalary + (employees[i].employeeSalary * percent) / 100;
+                employees[i].employeeSalary = employees[i].getEmployeeSalary() + (employees[i].getEmployeeSalary() * percent) / 100;
             }
         }
 
@@ -76,7 +77,7 @@ package com.company;
             double maxSalary = -1f;
             int index = 0;
             for (int i = 0; i < size; i++) {
-                if (employees[i].employeeDepartment == department) {
+                if (employees[i].getEmployeeDepartment() == department) {
                     if (employees[i].employeeSalary > maxSalary)
                         index = i;
                     maxSalary = employees[i].employeeSalary;
@@ -89,7 +90,7 @@ package com.company;
             double minSalary = 1.0 / 0.0;
             int index = 0;
             for (int i = 0; i < size; i++) {
-                if (employees[i].employeeDepartment == department) {
+                if (employees[i].getEmployeeDepartment() == department) {
                     if (employees[i].employeeSalary < minSalary)
                         index = i;
                     minSalary = employees[i].employeeSalary;
@@ -101,7 +102,7 @@ package com.company;
         public double calculateCostOfSalaryDepartment(int department) { // сумма затрат на зарплаты в отделе
             double sum = 0;
             for (int i = 0; i < size; i++) {
-                if (employees[i].employeeDepartment == department) {
+                if (employees[i].getEmployeeDepartment() == department) {
                     sum = sum + employees[i].employeeSalary;
                 }
             }
@@ -111,7 +112,7 @@ package com.company;
         public double findAverageSalaryDepartment(int department) { // средняя зарплата сотрудников в отделе
             int lengthDepartment = 0;
             for (int i = 0; i < size; i++) {
-                if (employees[i].employeeDepartment == department) {
+                if (employees[i].getEmployeeDepartment() == department) {
                     lengthDepartment++;
                 }
             }
@@ -120,7 +121,7 @@ package com.company;
 
         public void indexationSalaryAllEmployeesDepartment(int department, int percent) { // индексация всех зарплат на % в отделе
             for (int i = 0; i < size; i++) {
-                if (employees[i].employeeDepartment == department) {
+                if (employees[i].getEmployeeDepartment() == department) {
                     employees[i].employeeSalary = employees[i].employeeSalary + (employees[i].employeeSalary * percent) / 100;
                 }
             }
@@ -128,8 +129,8 @@ package com.company;
 
         public void printEmployeesDepartment(int department) { // печать сотрудников отдела
             for (int i = 0; i < size; i++) {
-                if (employees[i].employeeDepartment == department) {
-                    System.out.println(employees[i].employeeLastName + " " + employees[i].employeeName + " " + employees[i].employeeMiddleName + " " + employees[i].employeeSalary);
+                if (employees[i].getEmployeeDepartment() == department) {
+                    System.out.println(employees[i].getEmployeeLastName() + " " + employees[i].getEmployeeName() + " " + employees[i].getEmployeeMiddleName() + " " + employees[i].employeeSalary);
                 }
             }
         }
@@ -137,7 +138,7 @@ package com.company;
         public void findEmployeesWithSalaryLessThenNumber(double number) { // сотрудников с зарплатой меньше числа
             for (int i = 0; i < size; i++) {
                 if (employees[i].employeeSalary < number) {
-                    System.out.println(employees[i].getID() + ": " + employees[i].employeeLastName + " " + employees[i].employeeName + " " + employees[i].employeeMiddleName + " " + employees[i].employeeSalary);
+                    System.out.println(employees[i].getID() + ": " + employees[i].getEmployeeLastName() + " " + employees[i].getEmployeeName() + " " + employees[i].getEmployeeMiddleName() + " " + employees[i].employeeSalary);
                 }
             }
         }
@@ -145,7 +146,7 @@ package com.company;
         public void findEmployeesWithSalaryGreaterThanNumber(double number) { // сотрудников с зарплатой больше или равно числу
             for (int i = 0; i < size; i++) {
                 if (employees[i].employeeSalary >= number) {
-                    System.out.println(employees[i].getID() + ": " + employees[i].employeeLastName + " " + employees[i].employeeName + " " + employees[i].employeeMiddleName + " " + employees[i].employeeSalary);
+                    System.out.println(employees[i].getID() + ": " + employees[i].getEmployeeLastName() + " " + employees[i].getEmployeeName() + " " + employees[i].getEmployeeMiddleName() + " " + employees[i].employeeSalary);
                 }
             }
         }
@@ -196,7 +197,7 @@ package com.company;
                System.out.println("Отдел № " + i);
                 for (int j = 0; j < employees.length; j++) {
                     if (employees[j].employeeDepartment == i) {
-                        System.out.println(employees[j].employeeLastName + " " + employees[j].employeeName + " " + employees[j].employeeMiddleName);
+                        System.out.println(employees[j].getEmployeeLastName() + " " + employees[j].getEmployeeName() + " " + employees[j].getEmployeeMiddleName());
                     }
                 }
             }
